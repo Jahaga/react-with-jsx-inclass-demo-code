@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React with JSX</title>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <script type="text/babel">
+        const parentElement = document.querySelector("#root")
+
+
+
+        function HelloAsFunctionalComponent (props) {
+            return (
+                <h1>
+                    <em>Hello, { props.name }!</em>
+                </h1>
+            )
+        }
+
+
+
+        class HelloAsClassComponent extends React.Component {
+            render () {
+                return (
+                    <h1>
+                        <em>Hello, { this.props.name }!</em>
+                    </h1>
+                )
+            }
+        }
+
+        
+
+        // 1. PUT parentheses around multi-line JSX!!!
+        // 2. All JSX expressions MUST have only one top-level element/component. Here you see that we've wrapped our two components and an H3 tag in a single DIV tag for this purpose.
+        const element = (
+            <div>
+                <HelloAsFunctionalComponent name="Lorne Jenkins" />
+                <HelloAsClassComponent name="Peter Feher" />
+                <h3>
+                    <em>Hello, I'm not a component. I'm just going to be some normal HTML.</em>
+                </h3>
+            </div>
+        )
+
+        // You'll only do this ONCE – do not put this inside a component.
+        ReactDOM.render(
+            element,
+            parentElement
+        )
+    </script>
+</body>
+</html>
